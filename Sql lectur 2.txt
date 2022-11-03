@@ -1,0 +1,109 @@
+
+
+C:\Users\akcha>mysql -u root -p -h 127.0.0.1
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.25-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use college;
+Database changed
+MariaDB [college]> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
+| teachers          |
++-------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [college]> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Sid    | int(11)     | YES  |     | NULL    |       |
+| Sname  | varchar(20) | YES  |     | NULL    |       |
+| Branch | varchar(20) | YES  |     | NULL    |       |
+| Marks  | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.020 sec)
+
+MariaDB [college]> insert into student values(1,'Ram','IT',65);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [college]> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Sid    | int(11)     | YES  |     | NULL    |       |
+| Sname  | varchar(20) | YES  |     | NULL    |       |
+| Branch | varchar(20) | YES  |     | NULL    |       |
+| Marks  | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.019 sec)
+
+MariaDB [college]> insert into student values(1,'Anjali','BioTech',24);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [college]> select *from student;
++------+--------+---------+-------+
+| Sid  | Sname  | Branch  | Marks |
++------+--------+---------+-------+
+|    1 | Ram    | IT      | 65    |
+|    1 | Anjali | BioTech | 24    |
++------+--------+---------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [college]> update student set Sname="Ashish" where Sid=1;
+Query OK, 2 rows affected (0.003 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [college]> select *from student;
++------+--------+---------+-------+
+| Sid  | Sname  | Branch  | Marks |
++------+--------+---------+-------+
+|    1 | Ashish | IT      | 65    |
+|    1 | Ashish | BioTech | 24    |
++------+--------+---------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [college]> update student set Sid=2 where Marks=24;
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [college]> select *from student;
++------+--------+---------+-------+
+| Sid  | Sname  | Branch  | Marks |
++------+--------+---------+-------+
+|    1 | Ashish | IT      | 65    |
+|    2 | Ashish | BioTech | 24    |
++------+--------+---------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [college]> update student set Sname="Anjali" where Sid=1;
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [college]> select *from student;
++------+--------+---------+-------+
+| Sid  | Sname  | Branch  | Marks |
++------+--------+---------+-------+
+|    1 | Anjali | IT      | 65    |
+|    2 | Ashish | BioTech | 24    |
++------+--------+---------+-------+
+2 rows in set (0.001 sec)
+
+MariaDB [college]> delete from student where Sid=2;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [college]> select *from student;
++------+--------+--------+-------+
+| Sid  | Sname  | Branch | Marks |
++------+--------+--------+-------+
+|    1 | Anjali | IT     | 65    |
++------+--------+--------+-------+
+1 row in set (0.001 sec)
